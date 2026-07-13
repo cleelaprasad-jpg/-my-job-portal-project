@@ -1,0 +1,47 @@
+# ==========================================
+# Django / Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Static and Media
+staticfiles/
+media/
+
+# Logs
+*.log
+
+# ==========================================
+# React / Node
+# ==========================================
+node_modules/
+frontend/dist/
+frontend/build/
+
+# Cache
+.vite/
+.eslintcache
+.parcel-cache/
+
+# ==========================================
+# Environment Variables
+# ==========================================
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# IDE and OS Files
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
