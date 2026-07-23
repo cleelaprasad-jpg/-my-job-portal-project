@@ -3,9 +3,12 @@ from rest_framework import generics,status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import JobSeekerSerializer
 from .serializers import RecruiterSerializer
+from .serializers import CompanySerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
+from apps.jobs.permissions import IsRecruiter
+from rest_framework.permissions import IsAuthenticated
 
 #jobseeker sign up view 
 class JobSeekerSignupView(generics.CreateAPIView):
@@ -52,3 +55,13 @@ class RecruiterSignupView(generics.CreateAPIView):
 #login view 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+#company profile sview
+class CompanyProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = CompanySerializer
+    permission_classes = [IsRecruiter,IsAuthenticated]
+
+    def get_object(self):                       #always returns the logged in recruiter's company details
+        return self.request.user.recruiter_profile.company
+    

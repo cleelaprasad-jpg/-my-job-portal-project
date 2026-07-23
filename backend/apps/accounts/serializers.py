@@ -113,3 +113,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['email'] = user.email
         return token
+    
+#company serializer 
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = [
+            "id",
+            "name",
+            "website",
+            "description",
+            "logo"
+        ]
+        read_only_fields = ["id"]
