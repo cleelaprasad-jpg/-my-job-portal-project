@@ -4,7 +4,7 @@ from rest_framework import generics
 
 from .models import Job
 from .permissions import IsRecruiter
-
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 #create job view
@@ -49,4 +49,15 @@ class JobDeleteView(generics.DestroyAPIView):
         obj = super().get_object()
         self.check_object_permissions(self.request,obj)
         return obj
- 
+
+ #all jobs posted by logged in recruiter
+class RecruiterJobListView(generics.ListAPIView):
+    serializer_class = JobSerializer
+    permission_classes = [IsRecruiter,IsAuthenticated]
+
+    def get_queryset(self):
+        return Job.objects.filter(created_by=self.request.user).order_by('-created_at')
+
+
+
+    
