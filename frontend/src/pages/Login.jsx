@@ -5,6 +5,7 @@ import {
   recruiterSignup,
 } from "../Services/authService";
 import { Button } from "../components/Buttons.jsx";
+// import { Testapi } from "./Home.jsx";
 
 //jobseeker signup component
 export function JobSeekerSignup() {
@@ -273,8 +274,13 @@ export function Login() {
           required
         />
         <br />
-        <Button type="submit">Login</Button>
+        <Button type="submit">Login</Button>{" "}
+        {/* disable when processing and change it to loading.. */}
       </form>
+      <a href="/recruiter/dashboard/" target="_self">
+        {" "}
+        <button type="button">Go to Recruiter Page</button>
+      </a>
     </>
   );
 }

@@ -48,9 +48,13 @@ export const login = async (email, password) => {
     localStorage.setItem("refresh_token", response.data.refresh);
     localStorage.setItem("role", response.data.role);
     alert("Logged in Successfully");
+    // if (response.data.role === "recruiter") {
+    //   Navigate("recruiter/dashboard");
+    // } else {
+    //   Navigate("jobseeker/signup/");
+    // }
     return response.data;
   } catch (error) {
-    console.log(error.response.data);
-    alert(JSON.stringify(error.response.data));
+    throw error.response.data;
   }
 };
