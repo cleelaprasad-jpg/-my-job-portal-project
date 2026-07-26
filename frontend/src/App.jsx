@@ -9,6 +9,7 @@ import { RecruiterDashBoard } from "./pages/RecruiterDashBoard.jsx";
 import { JobSeekerSignup, Login, RecruiterSignup } from "./pages/Login";
 import { PostJob } from "./pages/PostJob.jsx";
 import { MyJobs } from "./pages/MyJobs.jsx";
+import { EditJob } from "./pages/EditJob.jsx";
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
           element={
             <ProtectRoute allowedRole="recruiter">
               <MyJobs />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/job/:id/edit/" //here :id expect a dynamic value
+          element={
+            <ProtectRoute allowedRole="recruiter">
+              <EditJob />
             </ProtectRoute>
           }
         />

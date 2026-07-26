@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../components/Buttons";
 import { api } from "../Services/services";
+import { Link } from "react-router-dom";
 
 export function MyJobs() {
   const [jobs, setJobs] = useState([]);
@@ -59,7 +60,11 @@ export function MyJobs() {
             <p>{job.location}</p>
             <p>{job.salary}</p>
             <p>{job.job_type}</p>
-            <Button>Edit</Button> &nbsp;
+            <Link to={`/job/${job.id}/edit/`}>
+              {" "}
+              {/* //to use backtik it must be between curly braces. */}
+              <Button>Edit</Button> &nbsp;
+            </Link>{" "}
             <Button onClick={() => handleDelete(job.id)}> Delete</Button> &nbsp;
             <Button>View Applicants</Button>&nbsp;
           </div>
