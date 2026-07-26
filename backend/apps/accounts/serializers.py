@@ -113,7 +113,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['email'] = user.email
         return token
-    
+    def validate(self, attrs):
+        data =  super().validate(attrs)
+
+        data['role'] = self.user.role  #later need to add username and email as well if you like
+        return data
 #company serializer 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
