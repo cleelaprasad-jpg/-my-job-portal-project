@@ -6,6 +6,7 @@ import {
 } from "../Services/authService";
 import { Button } from "../components/Buttons.jsx";
 // import { Testapi } from "./Home.jsx";
+import { useNavigate } from "react-router-dom";
 
 //jobseeker signup component
 export function JobSeekerSignup() {
@@ -241,12 +242,23 @@ export function RecruiterSignup() {
 
 //login component (jobseeker/recruiters)
 export function Login() {
+  const navigate = useNavigate();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    try {
+      const user = await login(email, password);
+
+      if (user.role === "recruiter") {
+        navigate("/recruiter/dashboard/");
+      } else {
+        navigate("/jobseeker/signup/");
+      }
+    } catch (error) {
+      console.log("Login Failed:", error);
+    }
   };
   return (
     <>

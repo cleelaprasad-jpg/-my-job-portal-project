@@ -7,6 +7,8 @@ import "./App.css";
 import ProtectRoute from "./components/ProtectRoute.jsx";
 import { RecruiterDashBoard } from "./pages/RecruiterDashBoard.jsx";
 import { JobSeekerSignup, Login, RecruiterSignup } from "./pages/Login";
+import { PostJob } from "./pages/PostJob.jsx";
+import { MyJobs } from "./pages/MyJobs.jsx";
 
 function App() {
   return (
@@ -14,13 +16,29 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="jobseeker/signup/" element={<JobSeekerSignup />} />
-        <Route path="recruiter/signup/" element={<RecruiterSignup />} />
+        <Route path="/jobseeker/signup/" element={<JobSeekerSignup />} />
+        <Route path="/recruiter/signup/" element={<RecruiterSignup />} />
         <Route
           path="/recruiter/dashboard/"
           element={
-            <ProtectRoute role="recruiter">
+            <ProtectRoute allowedRole="recruiter">
               <RecruiterDashBoard />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/postjob/"
+          element={
+            <ProtectRoute allowedRole="recruiter">
+              <PostJob />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/myjobs/"
+          element={
+            <ProtectRoute allowedRole="recruiter">
+              <MyJobs />
             </ProtectRoute>
           }
         />

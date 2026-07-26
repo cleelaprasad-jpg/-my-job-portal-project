@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../Services/services";
 import { Button } from "../components/Buttons.jsx";
+import { Link } from "react-router-dom";
 
 //recruiter dashboard
 export function RecruiterDashBoard() {
@@ -22,6 +23,7 @@ export function RecruiterDashBoard() {
     };
     fetchCompany();
   }, []);
+
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
   return (
@@ -31,7 +33,12 @@ export function RecruiterDashBoard() {
       <hr />
       <div>
         {company.logo && (
-          <img src={company.logo} alt={company.name} width="120" />
+          <img
+            src={company.logo}
+            alt={company.name}
+            width="120"
+            style={{ background: "white" }}
+          />
         )}
 
         <h2>{company.name}</h2>
@@ -47,8 +54,14 @@ export function RecruiterDashBoard() {
       <div>
         <br />
         <h2>Quick Actions</h2>
-        <Button type="button">Post JObs</Button> &nbsp;
-        <Button type="button">My JObs</Button> &nbsp;
+        <Link to="/postjob/">
+          <Button type="button">Post Jobs</Button>
+        </Link>{" "}
+        &nbsp;
+        <Link to="/myjobs/">
+          <Button type="button">My Jobs</Button>
+        </Link>{" "}
+        &nbsp;
         <Button type="button">Edit Company</Button> &nbsp;
       </div>
     </>

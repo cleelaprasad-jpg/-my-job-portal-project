@@ -1,5 +1,4 @@
 import { api } from "./Services";
-
 //jobseeker signup
 
 export const jobSeekerSignup = async (data) => {
@@ -48,11 +47,6 @@ export const login = async (email, password) => {
     localStorage.setItem("refresh_token", response.data.refresh);
     localStorage.setItem("role", response.data.role);
     alert("Logged in Successfully");
-    // if (response.data.role === "recruiter") {
-    //   Navigate("recruiter/dashboard");
-    // } else {
-    //   Navigate("jobseeker/signup/");
-    // }
     return response.data;
   } catch (error) {
     throw error.response.data;
