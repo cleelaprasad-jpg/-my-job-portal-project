@@ -22,6 +22,26 @@ export function MyJobs() {
     fetchJob();
   }, []);
 
+  //delete job component
+  const handleDelete = async (jobid) => {
+    const confirmDelete = window.confirm(
+      "Are You sure you want to delete this Job.",
+    );
+    if (!confirmDelete) return; //if no return
+    try {
+      await api.delete(`jobs/job/${jobid}/delete/`);
+
+      setJobs((currentjobs) => currentjobs.filter((job) => job.id !== jobid)); //here the current value in jobs will come as value to currentsjobs parameter
+      alert("job Successfully deleted.");
+      {
+        /*always receives the latest state even if multiple state updates happen close together ifs the recommeded pattern whenever the new state depends on the previous state */
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Failed to delete the job.");
+    }
+  };
+
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
 
@@ -40,7 +60,7 @@ export function MyJobs() {
             <p>{job.salary}</p>
             <p>{job.job_type}</p>
             <Button>Edit</Button> &nbsp;
-            <Button>Delete</Button> &nbsp;
+            <Button onClick={() => handleDelete(job.id)}> Delete</Button> &nbsp;
             <Button>View Applicants</Button>&nbsp;
           </div>
         ))

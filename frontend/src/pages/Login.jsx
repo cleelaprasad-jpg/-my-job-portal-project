@@ -258,6 +258,7 @@ export function Login() {
       }
     } catch (error) {
       console.log("Login Failed:", error);
+      alert("login failed");
     }
   };
   return (
