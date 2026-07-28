@@ -66,7 +66,9 @@ export function MyJobs() {
               <Button>Edit</Button> &nbsp;
             </Link>{" "}
             <Button onClick={() => handleDelete(job.id)}> Delete</Button> &nbsp;
-            <Button>View Applicants</Button>&nbsp;
+            <Link to={`/applications/${job.id}/view/`}>
+              <Button>View Applicants</Button>&nbsp;
+            </Link>
           </div>
         ))
       )}

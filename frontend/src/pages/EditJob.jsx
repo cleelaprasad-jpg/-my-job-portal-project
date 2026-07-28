@@ -13,7 +13,7 @@ export function EditJob() {
     location: "",
     salary: "",
     job_type: "",
-    experienced_required: "",
+    experience_required: "",
   });
 
   //fetch the current job details for update
@@ -93,8 +93,9 @@ export function EditJob() {
         <br />
         <label htmlFor="experience_required">Experience required:</label>
         <input
-          type="text"
+          id="experience_required"
           name="experience_required"
+          type="number"
           value={formData.experience_required || ""}
           onChange={handleChange}
         />

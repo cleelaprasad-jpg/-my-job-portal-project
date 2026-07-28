@@ -10,6 +10,7 @@ import { JobSeekerSignup, Login, RecruiterSignup } from "./pages/Login";
 import { PostJob } from "./pages/PostJob.jsx";
 import { MyJobs } from "./pages/MyJobs.jsx";
 import { EditJob } from "./pages/EditJob.jsx";
+import { ViewApplications } from "./pages/ViewApplications.jsx";
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
           element={
             <ProtectRoute allowedRole="recruiter">
               <EditJob />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/applications/:id/view/"
+          element={
+            <ProtectRoute allowedRole="recruiter">
+              <ViewApplications />
             </ProtectRoute>
           }
         />

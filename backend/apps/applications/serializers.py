@@ -15,12 +15,12 @@ class JobApplicationSerializer(serializers.ModelSerializer):
     )
     #adding name and resume also to the serializer to be displayed in the frontend
     applicant_name = serializers.CharField(
-        source = "applicant.jobseeker_profile.full_name",
+        source = "applicant.job_seeker_profile.full_name",
         read_only=True
     )
 
     resume = serializers.FileField(
-        source = "applicant.jobseeker_profile.resume",
+        source = "applicant.job_seeker_profile.resume",
         read_only=True
     )
     class Meta:
