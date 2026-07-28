@@ -8,6 +8,7 @@ export function ViewApplications() {
   const { id } = useParams(); //the variable must be in curly braces or the value returned as a object to the backend api.
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [status, setStatus] = useState();
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -24,6 +25,26 @@ export function ViewApplications() {
 
     fetchApplications();
   }, [id]);
+
+  //handle Status Update
+
+  const handleStatusUpdate = async (applicationId) => {
+    try {
+      await api.patch(
+        `applications/applications/${applicationId}/status/`,
+        status,
+      );
+      setApplications((prev) =>
+        prev.map((app) =>
+          app.id === applicationId ? { ...app, status: status.status } : app,
+        ),
+      );
+      alert("status Updated Succesfully");
+    } catch (error) {
+      alert("Failed to update status");
+      console.error("Error Updating Status:", error);
+    }
+  };
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
@@ -70,14 +91,31 @@ export function ViewApplications() {
                       <span>No Resume Uploaded</span>
                     )}
                   </td>
-                  <td>{applications.status}</td>
+                  <td>
+                    <select
+                      value={status?.status || applications.status}
+                      onChange={(e) =>
+                        setStatus({ ...status, status: e.target.value })
+                      }
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="reviewed">Reviewed</option>
+                      <option value="rejected">Rejected</option>
+                      <option value="accepted">Accepted</option>
+                    </select>
+                  </td>
                   <td>
                     {new Date(applications.applied_at).getDate()}/
                     {new Date(applications.applied_at).getMonth() + 1}/
                     {new Date(applications.applied_at).getFullYear()}
                   </td>
                   <td>
-                    <Button type="button">Update Status</Button>
+                    <Button
+                      type="button"
+                      onClick={() => handleStatusUpdate(applications.id)}
+                    >
+                      Update Status
+                    </Button>
                   </td>
                 </tr>
               </tbody>
