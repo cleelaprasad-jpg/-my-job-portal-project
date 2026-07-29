@@ -10,7 +10,7 @@ export function JobSeekerDashboard() {
       <Link to="/jobs/">
         <Button type="button">Browse Jobs</Button>
       </Link>{" "}
-      <Link to="">
+      <Link to="/job/my-applications/">
         <Button type="button">My Applications</Button>
       </Link>{" "}
       <Link to="">

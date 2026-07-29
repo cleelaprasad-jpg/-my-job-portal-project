@@ -15,6 +15,7 @@ import { JobSeekerDashboard } from "./pages/JobSeekerDashboard.jsx";
 import { EditCompany } from "./pages/Editcompany.jsx";
 import { BrowseJobs } from "./pages/BrowseJobs.jsx";
 import { JobDetails } from "./pages/JobDetails.jsx";
+import { MyApplication } from "./pages/MyApplications.jsx";
 
 function App() {
   return (
@@ -94,6 +95,14 @@ function App() {
           element={
             <ProtectRoute allowedRole="job_seeker">
               <JobDetails />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/job/my-applications/"
+          element={
+            <ProtectRoute allowedRole="job_seeker">
+              <MyApplication />
             </ProtectRoute>
           }
         />
