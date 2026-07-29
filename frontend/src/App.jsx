@@ -13,6 +13,8 @@ import { EditJob } from "./pages/EditJob.jsx";
 import { ViewApplications } from "./pages/ViewApplications.jsx";
 import { JobSeekerDashboard } from "./pages/JobSeekerDashboard.jsx";
 import { EditCompany } from "./pages/Editcompany.jsx";
+import { BrowseJobs } from "./pages/BrowseJobs.jsx";
+import { JobDetails } from "./pages/JobDetails.jsx";
 
 function App() {
   return (
@@ -76,6 +78,22 @@ function App() {
           element={
             <ProtectRoute allowedRole="job_seeker">
               <JobSeekerDashboard />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/jobs/"
+          element={
+            <ProtectRoute allowedRole="job_seeker">
+              <BrowseJobs />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/jobs/:id/"
+          element={
+            <ProtectRoute allowedRole="job_seeker">
+              <JobDetails />
             </ProtectRoute>
           }
         />
