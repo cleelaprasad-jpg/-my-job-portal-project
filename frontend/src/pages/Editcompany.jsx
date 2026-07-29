@@ -14,7 +14,9 @@ export function EditCompany() {
   });
 
   const [loading, setLoading] = useState(true);
-
+  {
+    /* next time add a logo state variable to display current logo in the form and use it in the img tag */
+  }
   //get the current company details for update
   useEffect(() => {
     const fetchDetails = async () => {
@@ -97,6 +99,9 @@ export function EditCompany() {
           onChange={(e) => handleChange(e)}
         />
         <br />
+        {/*Browsers do not allow javascript to set the value of a file input for a secruity reasons imagine if a website could
+        silently select files from your computer if would be a major privacy risk 
+        that why the <input type="file" value="formData.logo won't work"/> browser ignores and throws a error*/}
         <label htmlFor="logo">Logo:</label>
         <input
           type="file"
@@ -105,7 +110,7 @@ export function EditCompany() {
           onChange={(e) => handleChange(e)}
         />
         <br />
-
+        {/*the accept attribute tells the browser when user opens the file picker only show image files */}
         <Button type="submit">Update Company</Button>
       </form>
     </>
