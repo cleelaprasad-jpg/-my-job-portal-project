@@ -62,7 +62,9 @@ export function RecruiterDashBoard() {
           <Button type="button">My Jobs</Button>
         </Link>{" "}
         &nbsp;
-        <Button type="button">Edit Company</Button> &nbsp;
+        <Link to="/edit/company/">
+          <Button type="button">Edit Company</Button>
+        </Link>
       </div>
     </>
   );

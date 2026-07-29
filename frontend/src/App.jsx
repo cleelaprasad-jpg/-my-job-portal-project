@@ -11,6 +11,8 @@ import { PostJob } from "./pages/PostJob.jsx";
 import { MyJobs } from "./pages/MyJobs.jsx";
 import { EditJob } from "./pages/EditJob.jsx";
 import { ViewApplications } from "./pages/ViewApplications.jsx";
+import { JobSeekerDashboard } from "./pages/JobSeekerDashboard.jsx";
+import { EditCompany } from "./pages/Editcompany.jsx";
 
 function App() {
   return (
@@ -57,6 +59,23 @@ function App() {
           element={
             <ProtectRoute allowedRole="recruiter">
               <ViewApplications />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/edit/company/"
+          element={
+            <ProtectRoute allowedRole="recruiter">
+              <EditCompany />
+            </ProtectRoute>
+          }
+        />
+        {/*job seeker routes */}
+        <Route
+          path="/jobseeker/dashboard/"
+          element={
+            <ProtectRoute allowedRole="job_seeker">
+              <JobSeekerDashboard />
             </ProtectRoute>
           }
         />

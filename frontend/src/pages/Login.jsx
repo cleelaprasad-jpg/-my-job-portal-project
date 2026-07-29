@@ -254,7 +254,7 @@ export function Login() {
       if (user.role === "recruiter") {
         navigate("/recruiter/dashboard/");
       } else {
-        navigate("/jobseeker/signup/");
+        navigate("/jobseeker/dashboard/");
       }
     } catch (error) {
       console.log("Login Failed:", error);
