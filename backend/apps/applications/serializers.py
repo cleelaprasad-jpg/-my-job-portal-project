@@ -50,3 +50,26 @@ class ApplicationStatusSerilizer(serializers.ModelSerializer):
     class Meta:
         model = JobApplication
         fields = ['status']
+
+#Jobseeker applications serializer 
+class MyApplicationsSerializer(serializers.ModelSerializer):
+    company_name = serializers.CharField(
+        source="job.company.name",
+        read_only=True
+    )
+
+    job_title = serializers.CharField(
+        source="job.title",
+        read_only=True
+    )
+
+    class Meta:
+        model = JobApplication
+        fields = [
+            "id",
+            "job",
+            "job_title",
+            "company_name",
+            "status",
+            "applied_at"
+        ]

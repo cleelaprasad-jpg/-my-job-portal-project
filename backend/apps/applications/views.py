@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from .serializers import JobApplicationSerializer,ApplicationStatusSerilizer
+from .serializers import JobApplicationSerializer,ApplicationStatusSerilizer,MyApplicationsSerializer
 from rest_framework import generics
 
 from .models import Job,JobApplication
@@ -50,7 +50,7 @@ class JobApplicationsView(generics.ListAPIView):
 
 #Applied jobs view-jobseekers (logged in only) 
 class MyApplicationsView(generics.ListAPIView):
-    serializer_class = JobApplicationSerializer              #This view returns only the Logged in job seeker's applications.
+    serializer_class = MyApplicationsSerializer              #This view returns only the Logged in job seeker's applications.
     permission_classes = [IsJobSeeker]
 
     def get_queryset(self):
