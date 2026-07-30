@@ -9,6 +9,8 @@ class JobSerializer(serializers.ModelSerializer):
         source = 'company.name',
         read_only = True
     )
+    #serializermethodfield is a special field in django  rest thet does't exit in db but is calculated by a method every time the serializer return data
+    has_applied = serializers.SerializerMethodField()
     class Meta:
         model = Job
         fields =[
@@ -32,9 +34,9 @@ class JobSerializer(serializers.ModelSerializer):
             'is_active'
         ]
 
-        def get_has_applied(self,obj):
-            request = self.context.get("request")
-            #checks if logged in jobseeker already applied the job or not (True or False) will be returned
-            if not request or not request.user.is_Authenticated:
-                return False 
-            return JobApplication.object.filter(applicant=request.user,job=obj).exits()
+    def get_has_applied(self,obj):
+        request = self.context.get("request")
+        #checks if logged in jobseeker already applied the job or not (True or False) will be returned
+        if not request or not request.user.is_authenticated:
+            return False 
+        return JobApplication.objects.filter(applicant=request.user,job=obj).exists()
