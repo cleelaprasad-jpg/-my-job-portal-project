@@ -22,11 +22,21 @@ class JObView(generics.CreateAPIView):
 class JobListView(generics.ListAPIView):
     queryset = Job.objects.filter(is_active=True)
     serializer_class = JobSerializer
-
+    
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["request"] = self.request 
+        return context 
+    
 #Detail job view
 class JobDetailView(generics.RetrieveAPIView):
     queryset = Job.objects.filter(is_active=True)
     serializer_class = JobSerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["request"] = self.request 
+        return context 
 
 #Update jobs view   (supports put and patch)
 class JobUpdateview(generics.UpdateAPIView):
