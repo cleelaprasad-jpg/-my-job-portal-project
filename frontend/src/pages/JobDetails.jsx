@@ -70,8 +70,12 @@ export function JobDetails() {
           <strong>Description:</strong>
           {detail.description}
         </p>
-        <Button onClick={() => handleApply(detail.id)} type="button">
-          Apply Now
+        <Button
+          onClick={() => handleApply(detail.id)}
+          type="button"
+          disable={detail.has_applied.toString()}
+        >
+          {detail.has_applied ? "Already Applied" : "Apply Now"}
         </Button>
       </div>
     </>
